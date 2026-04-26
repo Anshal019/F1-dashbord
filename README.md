@@ -1,96 +1,31 @@
 # 🏎 Anshal Maheta — F1 Dashboard 2026
-Auto-updating personal F1 dashboard. One config file. Zero maintenance.
 
----
+A modern, auto-updating personal Formula 1 dashboard built to track the entire 2026 season in real-time. This project serves as a centralized hub for all F1 data, featuring a premium dark-mode aesthetic and live statistics.
 
-## ✅ STEP 1 — Edit my-config.js (THE ONLY FILE YOU TOUCH)
+## ✨ Features
 
-Open `my-config.js` and fill in your details:
+- **Live Championship Standings:** Real-time tracking of both Driver and Constructor points, including gaps to the leader and interactive progress bars.
+- **Next Race Countdown:** A live countdown timer for the upcoming Grand Prix, including the track name, round number, and specific date/time.
+- **Interactive Calendar:** A complete schedule of the 2026 season, highlighting completed races, sprint weekends, and the next destination.
+- **Race Results:** Instant updates on the latest podium finishers (P1, P2, P3) complete with team colors and race times.
+- **Personalized Profile:** A customizable hero section featuring the creator's avatar, bio, favorite team badge, and social links.
+- **Auto-Updating Data:** Powered by a free, no-authentication-required API that automatically refreshes within hours of a race finishing.
 
-```js
-name:        "Anshal Maheta",
-instagram:   "https://instagram.com/your_handle",   // ← change this
-portfolio:   "https://yourwebsite.com",              // ← or leave ""
-email:       "mailto:you@gmail.com",                 // ← or leave ""
-favouriteTeam: "Ferrari",                            // ← your fav team
-```
+## 🛠 Tech Stack
 
-Save the file. That's it for personalizing.
+- **Frontend Framework:** Next.js 14 / React 18
+- **Styling:** Vanilla CSS with custom CSS variables for team colors, responsive media queries, and dynamic animations.
+- **Data Source:** [Jolpica F1 API](https://api.jolpi.ca/ergast/f1/) (Free, open-source racing data API)
+- **Deployment:** Vercel
 
----
+## 📁 Project Architecture
 
-## ✅ STEP 2 — Test it locally
+The dashboard is designed to be lightweight and modular:
+- **`pages/index.js`:** The main dashboard UI, containing all the frontend React components (Hero, Ticker, Standings, Calendar).
+- **`pages/api/f1data.js`:** The backend serverless function that handles data fetching, formatting, and caching to ensure the dashboard loads instantly.
+- **`lib/f1api.js`:** Utility functions including mappings for official F1 team colors and country flags.
+- **`my-config.js` / `.env.local`:** Configuration files that control the personalized text, images, and API endpoints without altering the core codebase.
 
-```bash
-npm install
-npm run dev
-```
-Open http://localhost:3000 — you'll see your dashboard with live data.
+## 🏁 Design Philosophy
 
----
-
-## ✅ STEP 3 — Deploy free on Vercel
-
-### 3a. Push to GitHub
-```bash
-git init
-git add .
-git commit -m "F1 Dashboard by Anshal Maheta"
-```
-Go to github.com → New repository → name it `f1-dashboard` → copy the commands it gives you → paste in terminal.
-
-### 3b. Deploy on Vercel
-1. Go to vercel.com → Sign up free with GitHub
-2. Click "Add New Project"
-3. Select your `f1-dashboard` repo
-4. Click Deploy (no settings to change!)
-5. ✅ Done! You get a live link instantly.
-
----
-
-## 🔄 How Auto-Update Works
-
-```
-Race ends  →  Jolpica API updates (30 min later)
-           →  Your /api/f1data fetches fresh data
-           →  Dashboard shows new standings automatically
-```
-
-NO manual work. NO cron jobs. NO database.
-The API is FREE. No account needed. No API key needed.
-
-API used: https://api.jolpi.ca/ergast/f1/
-It updates after every single race, all season.
-
----
-
-## 📁 Project Files Explained
-
-```
-my-config.js          ← 👈 THE ONLY FILE YOU EDIT
-├── lib/f1api.js       ← fetches from Jolpica API (don't touch)
-├── pages/
-│   ├── api/f1data.js  ← backend API route (don't touch)
-│   └── index.js       ← dashboard UI (don't touch)
-├── public/
-│   └── anshal-avatar.png  ← your photo (already included)
-└── package.json       ← dependencies (don't touch)
-```
-
----
-
-## ❓ FAQ
-
-**Q: Does it really auto-update?**
-A: Yes. The backend caches data for 1 hour. After each race, within 1.5 hours, your dashboard shows the new standings. Automatically.
-
-**Q: What if I want to change my photo?**
-A: Replace `public/anshal-avatar.png` with your own image (keep the same filename). Or set `photoUrl` in my-config.js to any image URL.
-
-**Q: What if Jolpica API is down?**
-A: Very rare. If it happens, the dashboard shows the last cached data. Usually back up within hours.
-
-**Q: I updated my-config.js. How do I publish the change?**
-A: Just run: `git add . && git commit -m "update config" && git push`
-Vercel auto-deploys in 30 seconds.
-
+The interface was built with a "Pit Wall" aesthetic in mind—prioritizing data density, high contrast, and immediate readability. It uses official team hex codes to instantly visually communicate who is leading the championship, while maintaining a sleek, minimal, and modern web application feel.
