@@ -18,9 +18,9 @@ const MY_CONFIG = {
 
   // ── YOUR SOCIAL LINKS ─────────────────────────────────────
   // Paste your links. Leave "" to hide that button.
-  instagram: "https://instagram.com/YOUR_HANDLE",   // 👈 change this
-  portfolio: "",   // example: "https://anshalmaheta.com"
-  email:     "",   // example: "mailto:anshal@gmail.com"
+  instagram: "https://www.instagram.com/a4anshal?igsh=OW9sZmYwYWp4b2lx",   // 👈 change this
+
+  email:     "mailto:anshalmaheta@gmail.com",   // example: "mailto:anshal@gmail.com"
 
   // ── YOUR FAVOURITE F1 TEAM ────────────────────────────────
   // This team gets highlighted in the constructor standings

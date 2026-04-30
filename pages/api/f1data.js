@@ -15,16 +15,9 @@ export default async function handler(req, res) {
     ]);
     const nextRace = await getNextRace(schedule);
 
-    // Personal config from your .env.local — sent to frontend
-    const config = {
-      name:          process.env.NEXT_PUBLIC_YOUR_NAME      || 'Anshal Maheta',
-      bio:           process.env.NEXT_PUBLIC_YOUR_BIO       || 'Passionate F1 fan. Lights out and away we go. 🏁',
-      instagram:     process.env.NEXT_PUBLIC_YOUR_INSTAGRAM || '',
-      portfolio:     process.env.NEXT_PUBLIC_YOUR_PORTFOLIO || '',
-      email:         process.env.NEXT_PUBLIC_YOUR_EMAIL     || '',
-      favouriteTeam: process.env.NEXT_PUBLIC_FAVORITE_TEAM  || 'Ferrari',
-      chips: ['F1 Enthusiast', 'Race Analyst', '2026 Season', 'Tifosi 🔴'],
-    };
+    // Personal config from my-config.js — sent to frontend
+    const { MY_CONFIG } = require('../../my-config');
+    const config = MY_CONFIG;
 
     // Cache 1 hour on Vercel CDN — auto-refreshes after that
     res.setHeader('Cache-Control', 's-maxage=3600, stale-while-revalidate=86400');
