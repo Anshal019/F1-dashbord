@@ -21,8 +21,9 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
-    const audio = new Audio("https://www.myinstants.com/media/sounds/f1-v10.mp3");
-    audio.volume = 0.5; // Start at 50% volume
+    // Using a reliable Google library sound to prevent hotlink blocking
+    const audio = new Audio("https://actions.google.com/sounds/v1/transportation/pass_by_high_speed_car.ogg");
+    audio.volume = 1.0; // Max volume
 
     const playSound = () => {
       audio.play().catch(err => console.log("Audio play failed:", err));
