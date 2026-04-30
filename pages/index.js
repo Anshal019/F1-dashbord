@@ -21,6 +21,33 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
+    const audio = new Audio("https://www.myinstants.com/media/sounds/f1-v10.mp3");
+    audio.volume = 0.5; // Start at 50% volume
+
+    const playSound = () => {
+      audio.play().catch(err => console.log("Audio play failed:", err));
+      window.removeEventListener("click", playSound);
+      window.removeEventListener("keydown", playSound);
+      window.removeEventListener("touchstart", playSound);
+    };
+
+    // Attempt to play immediately (browsers often block this)
+    audio.play().catch(() => {
+      // Wait for the very first interaction to play the exhaust sound
+      window.addEventListener("click", playSound);
+      window.addEventListener("keydown", playSound);
+      window.addEventListener("touchstart", playSound);
+    });
+
+    return () => {
+      window.removeEventListener("click", playSound);
+      window.removeEventListener("keydown", playSound);
+      window.removeEventListener("touchstart", playSound);
+    };
+  }, []);
+
+
+  useEffect(() => {
     if (!data?.nextRace) return;
     const t = new Date(`${data.nextRace.date}T${data.nextRace.time}`);
     timer.current = setInterval(() => {
